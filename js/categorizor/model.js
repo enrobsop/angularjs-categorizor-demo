@@ -1,0 +1,92 @@
+categorizorModule.factory('categorizorModel', function() {
+
+    var getTransactions = function() {
+        return [
+            {date:"21/07/2001", label:"CASH NATWIDE JUL21 NEW MARKET  @15:23",amount:-100},
+            {date:"20/07/2001", label:"SAINSBURYS BANGOR",amount:1.75},
+            {date:"20/07/2001", label:"CASH NATWIDE JUL20 TOWN MALL @13:23",amount:-20},
+            {date:"20/07/2001", label:"Teles Team Lotto",amount:-1},
+            {date:"19/07/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-15.17},
+            {date:"19/07/2001", label:"Bank Savings ACC",amount:-30},
+            {date:"19/07/2001", label:"JONES A B *CBA Jones AB",amount:-25},
+            {date:"19/07/2001", label:"JONES B   *CBA 11223344",amount:-25},
+            {date:"18/07/2001", label:"JS ONLINE GROCERY 0800 328 1700",amount:-67.84},
+            {date:"18/07/2001", label:"STOKE SERVICE STAT SOMERSET",amount:-11.17},
+            {date:"17/07/2001", label:"ESSO GATE SA DUNKIRK CANTE",amount:-64.74},
+            {date:"16/07/2001", label:"ROYAL HOTEL WINDSOR",amount:-13.7},
+            {date:"16/07/2001", label:"MCDONALDS REST WHITFIELD",amount:-8.38},
+            {date:"16/07/2001", label:"WH SMITH TRAVEL BOURNEMOUTH",amount:-6.62},
+            {date:"14/07/2001", label:"CASH TSBC    JUL14 TOTAL JUBILE@10:08",amount:-60},
+            {date:"13/07/2001", label:"BRISTOL GARDEN AND BOURNEMOUTH",amount:-27.5},
+            {date:"13/07/2001", label:"CASH INFOCSH JUL13 WH SMITH NOR@13:48",amount:-20},
+            {date:"13/07/2001", label:"Teles Team Lotto",amount:-1},
+            {date:"12/07/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-20.86},
+            {date:"12/07/2001", label:"BOOTS 1234 BRISTOL",amount:-11.78},
+            {date:"12/07/2001", label:"HAPPY PIZZA BOURNEMOUTH",amount:-27.5},
+            {date:"12/07/2001", label:"JONES A B *CBA Jones AB",amount:-25},
+            {date:"12/07/2001", label:"JONES B   *CBA 11223344",amount:-25},
+            {date:"11/07/2001", label:"BRISTOL GARDEN AND BOURNEMOUTH",amount:-29.75},
+            {date:"11/07/2001", label:"CASH WALFORD BANK JUL11 BRISTOL      @12:11",amount:-40},
+            {date:"11/07/2001", label:"DEBIT INTEREST TO 19JUN2001",amount:-0.66},
+            {date:"09/07/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-28.43},
+            {date:"09/07/2001", label:"STOKE SERVICE STAT SOMERSET",amount:-11.87},
+            {date:"09/07/2001", label:"STOKE SERVICE STAT SOMERSET",amount:-5.66},
+            {date:"09/07/2001", label:"W M MORRISON PETRO STADLES",amount:-52.21},
+            {date:"09/07/2001", label:"W M MORRISONS PLC STADLES",amount:-80.27},
+            {date:"09/07/2001", label:"National gas SERVS",amount:-33.3},
+            {date:"09/07/2001", label:"Entertainment digital",amount:-19.5},
+            {date:"06/07/2001", label:"CASH WALFORD BANK JUL06 MSONS STADLE@12:27",amount:-40},
+            {date:"06/07/2001", label:"CASH WALFORD BANK JUL06 BT IPSWICH  @09:24",amount:-10},
+            {date:"06/07/2001", label:"Teles Team Lotto",amount:-1},
+            {date:"06/07/2001", label:"O2",amount:-32},
+            {date:"05/07/2001", label:"JONES A B *CBA Jones AB",amount:-25},
+            {date:"05/07/2001", label:"JONES B   *CBA 11223344",amount:-25},
+            {date:"05/07/2001", label:"SOUTH SOMERSET DC I",amount:-120},
+            {date:"04/07/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-12.49},
+            {date:"04/07/2001", label:"STOKE SERVICE STAT SOMERSET",amount:-43.04},
+            {date:"04/07/2001", label:"DUXFORD SERVICE ST DUXFORD",amount:-4.01},
+            {date:"03/07/2001", label:"SAINSBURYS S/MKTS POUND LANE",amount:-6.72},
+            {date:"03/07/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-46.17},
+            {date:"02/07/2001", label:"CHURCH PLAIN COMMU BOURNEMOUTHPW3866",amount:-7.19},
+            {date:"02/07/2001", label:"MORTGAGE",amount:-570},
+            {date:"02/07/2001", label:"TV LICENCE MBP",amount:-12.12},
+            {date:"02/07/2001", label:"ANGLIAN WATER",amount:-34},
+            {date:"02/07/2001", label:"Angular Insurance",amount:-52.51},
+            {date:"02/07/2001", label:"Power On",amount:-77},
+            {date:"02/07/2001", label:"Angular Insurance",amount:-29.13},
+            {date:"02/07/2001", label:"Angular Insurance",amount:-37.93},
+            {date:"02/07/2001", label:"O2",amount:-15.12},
+            {date:"02/07/2001", label:"SOUTH SOMERSET DC",amount:-39},
+            {date:"01/07/2001", label:"404040 31414141 INTERNET TRANSFER",amount:2360},
+            {date:"29/06/2001", label:"W M MORRISONS PLC STADLES",amount:-72.29},
+            {date:"29/06/2001", label:"CASH WALFORD BANK JUN29 BRISTOL      @11:19",amount:-30},
+            {date:"29/06/2001", label:"Teles Team Lotto",amount:-1},
+            {date:"28/06/2001", label:"BOOTS 1234 BRISTOL",amount:-16.49},
+            {date:"28/06/2001", label:"JONES A B *CBA Jones AB",amount:-25},
+            {date:"28/06/2001", label:"JONES B   *CBA 11223344",amount:-25},
+            {date:"26/06/2001", label:"NEXT 0345 BOURNEMOUTH",amount:-17},
+            {date:"26/06/2001", label:"WWW.TVFLIX.COM 08444820013",amount:-13.27},
+            {date:"25/06/2001", label:"TESCO 3333 WALTHAM CROSS",amount:5.57},
+            {date:"25/06/2001", label:"BRISTOL SUPERMARKET BRISTOL",amount:-2.97},
+            {date:"25/06/2001", label:"TESCO STORE GT.YARMOUTH",amount:-75.69},
+            {date:"25/06/2001", label:"Tp group PLC",amount:-29.61},
+            {date:"22/06/2001", label:"MCDONALDS REST STADLES",amount:-14.15},
+            {date:"22/06/2001", label:"Teles Team Lotto",amount:-1},
+            {date:"21/06/2001", label:"WWW.Website.com  001 RICHMOND  001",amount:-3.79},
+            {date:"21/06/2001", label:"CASH WALFORD BANK JUN21 BRISTOL      @15:37",amount:-50},
+            {date:"21/06/2001", label:"404040 31414141 INTERNET TRANSFER",amount:727.82},
+            {date:"21/06/2001", label:"JONES A B *CBA Jones AB",amount:-25},
+            {date:"21/06/2001", label:"JONES B   *CBA 11223344",amount:-25}
+        ];
+    };
+
+    var getCategories = function() {
+        return [];
+    };
+
+    return {
+        getTransactions:    getTransactions,
+        getCategories:      getCategories
+    }
+
+});

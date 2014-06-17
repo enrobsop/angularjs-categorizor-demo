@@ -1,0 +1,12 @@
+.rightCell {
+    text-align: right;
+}
+
+.select2-container {
+    padding: 0px;
+    border-width: 0px;
+}
+
+.select2-container.form-control {
+    height: auto !important;
+}
