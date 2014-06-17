@@ -63,6 +63,13 @@ categorizorModule.directive('cluster', function() {
             return max;
         };
 
+        $scope.removeIfEmpty = function(clusterId) {
+            var cluster = $scope.getCluster(clusterId);
+            if (cluster && cluster.size() == 0) {
+                $scope.removeCluster(clusterId);
+            }
+        }
+
         var initClustersIfRequired = function() {
             if (!$scope.clusters) {
                 $scope.clusters = [];
@@ -124,6 +131,7 @@ categorizorModule.directive('cluster', function() {
                     scope.moveTransaction(transactionId, fromClusterId, toClusterId);
                 }
 
+                ui.draggable.detach();
                 scope.removeIfEmpty(fromClusterId);
                 scope.$apply();
                 layoutMasonry();
