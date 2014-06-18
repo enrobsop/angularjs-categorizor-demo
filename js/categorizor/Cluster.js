@@ -1,6 +1,7 @@
 Cluster = function Cluster(config) {
-    this.id     = config.id;
-    this.items  = new Array();
+    this.id         = config.id;
+    this.items      = new Array();
+    this.category   = config.category;
 };
 
 Cluster.prototype = {
@@ -9,6 +10,18 @@ Cluster.prototype = {
 
     getId: function getId() {
         return this.id;
+    },
+
+    getCategory: function getCategory() {
+        return this.category;
+    },
+
+    setCategory: function setCategory(categoryName) {
+        this.category = categoryName;
+    },
+
+    unsetCategory: function unsetCategory() {
+        this.category = undefined;
     },
 
     size: function size() {

@@ -79,4 +79,42 @@ describe("The cluster directive", function() {
         expect(secondCluster.size()).toEqual(2);
     });
 
+    it("correctly finds clusters by category name", function() {
+        var firstCluster = scope.newCluster({category: "Groceries"}),
+            secondCluster = scope.newCluster({category: "Groceries"}),
+            thirdCluster = scope.newCluster({category: "Fuel"}),
+
+            groceriesClusters = scope.findClustersInCategory("Groceries"),
+            fuelClusters = scope.findClustersInCategory("Fuel"),
+            otherClusters = scope.findClustersInCategory("Other category");
+
+        expect(groceriesClusters.length).toEqual(2);
+        expect(groceriesClusters).toContain(firstCluster);
+        expect(groceriesClusters).toContain(secondCluster);
+
+        expect(fuelClusters.length).toEqual(1);
+        expect(fuelClusters).toContain(thirdCluster);
+
+        expect(otherClusters.length).toEqual(0);
+    });
+
+    it("correctly merges clusters with the same category name", function() {
+
+        var firstCluster = scope.newCluster({category: "Groceries"}),
+            secondCluster = scope.newCluster({category: "Groceries"}),
+            transaction1 = {date:"21/07/2001", label:"CASH NATWIDE JUL21 NEW MARKET  @15:23",amount:-100},
+            transaction2 = {date:"21/08/2001", label:"CASH NATWIDE AUG21 NEW MARKET  @15:23",amount:-101};
+
+        firstCluster.add(transaction1);
+        secondCluster.add(transaction2);
+
+        scope.mergeClustersForCategory("Groceries");
+
+        expect(scope.clusters.length).toEqual(1);
+        expect(scope.clusters[0].size()).toEqual(2);
+        expect(scope.clusters[0].items).toContain(transaction1);
+        expect(scope.clusters[0].items).toContain(transaction2);
+
+    });
+
 });
