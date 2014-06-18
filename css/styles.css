@@ -11,11 +11,17 @@
     height: auto !important;
 }
 
+.cluster .panel-badges {
+    position: absolute;
+    top: -14px;
+    right: 2px;
+}
+
+.cluster .panel-badges .badge {
+    border: 2px solid #FFF;
+}
+
 .cluster .table {
     display: table;
     margin:  0;
-}
-
-.cluster .transaction-count {
-    border: 2px solid #FFF;
 }
