@@ -33,9 +33,8 @@ categorizorModule.directive('categorySelector', function() {
                     return scope.newCategoryChoice(term);
                 }
             }
-        }).on("select2-blur", function() {
-            scope.maybeAddCategory(getSelectedTerm());
         }).on("change", function(event, ui) {
+            scope.maybeAddCategory(getSelectedTerm());
             handleNewCategorySelected();
         });
     };
