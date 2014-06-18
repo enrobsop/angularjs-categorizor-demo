@@ -117,4 +117,14 @@ describe("The cluster directive", function() {
 
     });
 
+
+    it("correctly identifies the first uncategorised cluster", function() {
+        var firstCluster = scope.newCluster({category: "Groceries"}),
+            secondCluster = scope.newCluster({}),
+            thirdCluster = scope.newCluster({category: "Fuel"});
+
+        expect(scope.firstUncategorisedCluster()).toBe(secondCluster);
+
+    });
+
 });

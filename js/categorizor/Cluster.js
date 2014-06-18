@@ -24,6 +24,10 @@ Cluster.prototype = {
         this.category = undefined;
     },
 
+    hasCategory: function hasCategory() {
+        return this.category && this.category.trim().length > 0;
+    },
+
     size: function size() {
         return this.items.length;
     },
