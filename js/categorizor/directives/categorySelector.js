@@ -20,7 +20,7 @@ categorizorModule.directive('categorySelector', function() {
                 } else {
                     collapsable.collapse("show");
                     panel.removeClass("panel-success");
-                    panel.addClass("panel-danger");
+                    panel.addClass("panel-default");
                 }
 
             };

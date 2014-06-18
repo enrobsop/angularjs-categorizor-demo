@@ -60,7 +60,8 @@
                              id="clusterStrength"
                              data-toggle="tooltip"
                              title="Drag to change the number of clusters"
-                             data-placement="top"></div>
+                             data-placement="top">
+                        </div>
                     </div>
 
                 </div>
@@ -75,23 +76,21 @@
                  ng-model="clusters"
                  ng-repeat="cluster in clusters"
             >
-                <div class="panel panel-danger">
+                <div class="panel panel-default">
                     <header class="panel-heading handle text-right">
-                        <div class="row">
-                            <div class="col-sm-3 text-right pull-right">
-                               <span class="transaction-count badge" style="position: relative; top: -20px; left: 50px; ">{{cluster.size()}}</span>
-                                <a
-                                    data-toggle="collapse"
-                                    href="#collapse{{cluster.id}}"
-                                    class="btn btn-link btn-xs"
-                                    tabindex="-1"
-                                 >
-                                    <span class="collapse-icon glyphicon glyphicon-chevron-up small"></span>
-                                </a>
-                            </div>
-                            <div class="col-sm-9">
-                               <div category-selector class="form-control nohandle category-selector" placeholder="Category name..."/>
-                            </div>
+                        <div category-selector class="form-control nohandle category-selector" placeholder="Category name..." ></div>
+                        <div class="panel-badges text-right pull-right"">
+                            <a
+                                data-toggle="collapse"
+                                href="#collapse{{cluster.id}}"
+                                class="badge"
+                                tabindex="-1"
+                                data-toggle="tooltip"
+                                title="Number of transactions and collapse status"
+                                data-placement="bottom"
+                             >
+                                {{cluster.size()}} <small><span class="collapse-icon glyphicon glyphicon-chevron-up small"></span></small>
+                            </a>
                         </div>
                     </header>
 
