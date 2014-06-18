@@ -3,8 +3,10 @@ categorizorModule.directive('cluster', function() {
     var linker = function(scope, element, attrs) {
         makeDraggable(element);
         makeDroppable(scope, element);
+        watchForFocus(scope, element);
         watchForCollapse(element);
         watchForCategorySelection(scope, element);
+        angular.element(".category-selector:first").find("input").focus();
     };
 
     var controller = function($scope) {
@@ -90,6 +92,7 @@ categorizorModule.directive('cluster', function() {
                 i,
                 n = clustersInCategory.length;
 
+
             if (n > 1) {
 
                 targetClusterId = clustersInCategory[0].id;
@@ -107,7 +110,19 @@ categorizorModule.directive('cluster', function() {
             return $scope.clusters.findAll(function(cluster) {
                 return cluster.category == categoryName;
             });
-        }
+        };
+
+        $scope.firstUncategorisedCluster = function() {
+            return $scope.clusters && $scope.clusters.find(function(cluster) {
+               return !cluster.hasCategory();
+            });
+        };
+
+        $scope.focusOnFirstUncategorisedCluster = function() {
+            angular.element("#clusterContainer")
+                .find(".panel:not('.panel-success,.panel-info'):first")
+                .find(".select2-choice:first").focus();
+        };
 
     };
 
@@ -217,8 +232,8 @@ categorizorModule.directive('cluster', function() {
 
             scope.mergeClustersForCategory(term);
 
+            scope.focusOnFirstUncategorisedCluster();
             layoutClusters(scope);
-            focusOnFirstUncategorisedCluster();
 
         }).on('categoryDeselected', function(event, cluster) {
 
@@ -235,12 +250,14 @@ categorizorModule.directive('cluster', function() {
 
     };
 
-    var focusOnFirstUncategorisedCluster = function() {
-        var uncategorisedClusters = angular.element(".cluster .panel-default input");
+    var watchForFocus = function(scope, element) {
+        var focusClass = "panel-info";
 
-        if (uncategorisedClusters && uncategorisedClusters.length > 0) {
-            $(uncategorisedClusters[0]).focus();
-        }
+        element.find("input").focusin(function () {
+            element.find(".panel:first").addClass(focusClass)
+        }).focusout(function () {
+            element.find(".panel:first").removeClass(focusClass);
+        });
 
     };
 
