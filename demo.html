@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AngularJS Demo</title>
+    <link rel="stylesheet" href="./bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css" />
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="./bower_components/select2/select2.css" />
@@ -49,10 +50,26 @@
     </header>
     <section ng-controller="MainCtrl" id="mainContent" class="container">
 
-        <div class="row">
-            <input type="number" min="0.05" max="1" step="0.05" ng-model="clusterStrength" ng-change="identifyClusters()"/>
-            <button class="btn btn-primary" ng-click="newCluster()"><i class="glyphicon-plus"></i> Add Cluster</button>
-        </div>
+        <section id="controls" class="row">
+            <div  class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="col-sm-4">
+                        <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
+                        <div cluster-strength
+                             id="clusterStrength"
+                             data-toggle="tooltip"
+                             title="Drag to change the number of clusters"
+                             data-placement="top"></div>
+                    </div>
+
+                    <div class="col-sm-8 pull-right">
+                        <button class="btn btn-default pull-right" ng-click="newCluster()"><i class="glyphicon-plus"></i> Add Cluster</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
         <div id="clusterContainer" class="row" masonry-options="{ transitionDuration: '0' }" masonry>
 
@@ -115,10 +132,11 @@
 <script src="./js/categorizor/controllers/mainController.js"></script>
 <script src="./js/categorizor/helper.js"></script>
 <script src="./js/categorizor/model.js"></script>
-<script src="js/categorizor/services/clusterService.js"></script>
-<script src="js/categorizor/directives/cluster.js"></script>
-<script src="js/categorizor/directives/transaction.js"></script>
-<script src="js/categorizor/directives/categorySelector.js"></script>
+<script src="./js/categorizor/services/clusterService.js"></script>
+<script src="./js/categorizor/directives/cluster.js"></script>
+<script src="./js/categorizor/directives/transaction.js"></script>
+<script src="./js/categorizor/directives/categorySelector.js"></script>
+<script src="./js/categorizor/directives/clusterStrength.js"></script>
 
 </body>
 </html>
