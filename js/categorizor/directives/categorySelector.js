@@ -9,18 +9,12 @@ categorizorModule.directive('categorySelector', function() {
 
             handleNewCategorySelected = function() {
                 var cluster     = element.parents(".cluster"),
-                    collapsable = cluster.find(".panel-collapse"),
-                    panel       = cluster.find(".panel");
+                    term        = getSelectedTerm();
 
-                if (getSelectedTerm()) {
-                    collapsable.collapse("hide");
-                    panel.removeClass("panel-default panel-danger");
-                    panel.addClass("panel-success");
-
+                if (term) {
+                    cluster.trigger('categorySelected', [cluster, term]);
                 } else {
-                    collapsable.collapse("show");
-                    panel.removeClass("panel-success");
-                    panel.addClass("panel-default");
+                    cluster.trigger('categoryDeselected', [cluster]);
                 }
 
             };

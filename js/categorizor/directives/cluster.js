@@ -4,6 +4,7 @@ categorizorModule.directive('cluster', function() {
         makeDraggable(element);
         makeDroppable(scope, element);
         watchForCollapse(element);
+        watchForCategorySelection(element);
     };
 
     var controller = function($scope) {
@@ -164,6 +165,31 @@ categorizorModule.directive('cluster', function() {
                 icon.removeClass("glyphicon-chevron-right");
                 icon.addClass("glyphicon-chevron-up");
             }
+
+        });
+    };
+
+    var watchForCategorySelection = function(element) {
+        var collapsable,
+            panel;
+
+        element.on('categorySelected', function(event, cluster, term) {
+
+            collapsable = cluster.find(".panel-collapse");
+            panel       = cluster.find(".panel");
+
+            collapsable.collapse("hide");
+            panel.removeClass("panel-default panel-danger");
+            panel.addClass("panel-success");
+
+        }).on('categoryDeselected', function(event, cluster) {
+
+            collapsable = cluster.find(".panel-collapse");
+            panel       = cluster.find(".panel");
+
+            collapsable.collapse("show");
+            panel.removeClass("panel-success");
+            panel.addClass("panel-default");
 
         });
 
