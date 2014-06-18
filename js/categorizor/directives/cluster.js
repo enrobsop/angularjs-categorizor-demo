@@ -3,16 +3,24 @@ categorizorModule.directive('cluster', function() {
     var linker = function(scope, element, attrs) {
         makeDraggable(element);
         makeDroppable(scope, element);
+        watchForFocus(scope, element);
         watchForCollapse(element);
+        watchForCategorySelection(scope, element);
+        angular.element(".category-selector:first").find("input").focus();
     };
 
     var controller = function($scope) {
 
         // TODO extract functions to a new ClusterService.
 
-        $scope.newCluster = function newCluster() {
+        $scope.newCluster = function newCluster(config) {
             initClustersIfRequired();
-            var newCluster = new Cluster({id:($scope.getMaxClusterId() + 1)});
+            var config = config || {},
+                newCluster;
+
+            config.id = $scope.getMaxClusterId() + 1;
+            newCluster = new Cluster(config);
+
             $scope.clusters.push(newCluster);
             return newCluster;
         };
@@ -75,6 +83,45 @@ categorizorModule.directive('cluster', function() {
             if (!$scope.clusters) {
                 $scope.clusters = [];
             }
+        };
+
+        $scope.mergeClustersForCategory = function(categoryName) {
+            var clustersInCategory = $scope.findClustersInCategory(categoryName),
+                targetClusterId,
+                sourceClusterId,
+                i,
+                n = clustersInCategory.length;
+
+
+            if (n > 1) {
+
+                targetClusterId = clustersInCategory[0].id;
+
+                for (i = 1; i < n; i++) {
+                    sourceClusterId = clustersInCategory[i].id
+                    $scope.moveAllTransactions(sourceClusterId, targetClusterId);
+                }
+
+            }
+
+        };
+
+        $scope.findClustersInCategory = function(categoryName) {
+            return $scope.clusters.findAll(function(cluster) {
+                return cluster.category == categoryName;
+            });
+        };
+
+        $scope.firstUncategorisedCluster = function() {
+            return $scope.clusters && $scope.clusters.find(function(cluster) {
+               return !cluster.hasCategory();
+            });
+        };
+
+        $scope.focusOnFirstUncategorisedCluster = function() {
+            angular.element("#clusterContainer")
+                .find(".panel:not('.panel-success,.panel-info'):first")
+                .find(".select2-choice:first").focus();
         };
 
     };
@@ -165,6 +212,51 @@ categorizorModule.directive('cluster', function() {
                 icon.addClass("glyphicon-chevron-up");
             }
 
+        });
+    };
+
+    var watchForCategorySelection = function(scope, element) {
+        var collapsable,
+            panel;
+
+        element.on('categorySelected', function(event, cluster, term) {
+
+            scope.cluster.setCategory(term);
+
+            collapsable = cluster.find(".panel-collapse");
+            panel       = cluster.find(".panel");
+
+            collapsable.collapse("hide");
+            panel.removeClass("panel-default panel-danger");
+            panel.addClass("panel-success");
+
+            scope.mergeClustersForCategory(term);
+
+            scope.focusOnFirstUncategorisedCluster();
+            layoutClusters(scope);
+
+        }).on('categoryDeselected', function(event, cluster) {
+
+            scope.cluster.unsetCategory();
+
+            collapsable = cluster.find(".panel-collapse");
+            panel       = cluster.find(".panel");
+
+            collapsable.collapse("show");
+            panel.removeClass("panel-success");
+            panel.addClass("panel-default");
+
+        });
+
+    };
+
+    var watchForFocus = function(scope, element) {
+        var focusClass = "panel-info";
+
+        element.find("input").focusin(function () {
+            element.find(".panel:first").addClass(focusClass)
+        }).focusout(function () {
+            element.find(".panel:first").removeClass(focusClass);
         });
 
     };
