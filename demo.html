@@ -50,8 +50,11 @@
     <section ng-controller="MainCtrl" id="mainContent" class="container">
 
         <div class="row">
-            <input type="number" min="0.05" max="1" step="0.05" ng-model="clusterStrength" ng-change="identifyClusters()"/>
-            <button class="btn btn-primary" ng-click="newCluster()"><i class="glyphicon-plus"></i> Add Cluster</button>
+            <button class="btn btn-default pull-right" ng-click="newCluster()"><i class="glyphicon-plus"></i> Add Cluster</button>
+            <form class="form-inline" role="form">
+                <label for="clusterStrength">Clustering strength:</label>
+                <input id="clusterStrength" type="number" min="0.05" max="1" step="0.05" ng-model="clusterStrength" ng-change="identifyClusters()"/>
+            </form>
         </div>
 
         <div id="clusterContainer" class="row" masonry-options="{ transitionDuration: '0' }" masonry>
