@@ -3,6 +3,7 @@ categorizorModule.directive('cluster', function() {
     var linker = function(scope, element, attrs) {
         makeDraggable(element);
         makeDroppable(scope, element);
+        watchForCollapse(element);
     };
 
     var controller = function($scope) {
@@ -133,14 +134,26 @@ categorizorModule.directive('cluster', function() {
 
                 ui.draggable.detach();
                 scope.removeIfEmpty(fromClusterId);
-                scope.$apply();
-                layoutMasonry();
+                layoutClusters(scope);
             }
         });
     };
 
+    var layoutClusters = function(scope) {
+        if (scope) {
+            scope.$apply();
+        }
+        layoutMasonry();
+    }
+
     var getClusterId = function(prefixedId) {
         return prefixedId.replace('cluster-','');
+    };
+
+    var watchForCollapse = function(element) {
+        element.on('shown.bs.collapse hidden.bs.collapse' , function() {
+            layoutClusters();
+        });
     };
 
     return {

@@ -1,6 +1,23 @@
 categorizorModule.directive('categorySelector', function() {
 
     var linker = function(scope, element, attrs) {
+
+        var getSelectedTerm = function() {
+                var data = element.select2('data');
+                return data ? data.text : '';
+            },
+
+            handleNewCategorySelected = function() {
+                var collapsable = element.parents(".cluster").find(".panel-collapse"),
+                    selectedTerm = getSelectedTerm();
+                console.info("selectedTerm:", selectedTerm);
+                if (selectedTerm) {
+                    collapsable.collapse("hide");
+                } else {
+                    collapsable.collapse("show");
+                }
+            };
+
         element.select2({
             minimumInputLength:     0,
             data:                   scope.categories,
@@ -16,15 +33,16 @@ categorizorModule.directive('categorySelector', function() {
                 }
             }
         }).on("select2-blur", function() {
-            var selectedTerm = $(this).select2('data').text;
-            scope.maybeAddCategory(selectedTerm);
+            scope.maybeAddCategory(getSelectedTerm());
+        }).on("change", function(event, ui) {
+            handleNewCategorySelected();
         });
     };
 
     var controller = function($scope) {
 
         $scope.maybeAddCategory = function(name) {
-            if ($scope.categoryExistsWithName(name)) {
+            if (name && name.trim().length > 0 && $scope.categoryExistsWithName(name)) {
                 $scope.addCategory(name);
             }
         };
@@ -34,7 +52,8 @@ categorizorModule.directive('categorySelector', function() {
         };
 
         $scope.categoryExistsWithName = function(name) {
-            var existingCategories = angular.element($scope.categories);
+            var existingCategories = angular.element($scope.categories)
+                name = name || '';
             return existingCategories.filter(function() {
                 return this.text.localeCompare(name) === 0;
             }).length===0
