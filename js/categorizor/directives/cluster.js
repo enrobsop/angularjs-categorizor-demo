@@ -152,8 +152,21 @@ categorizorModule.directive('cluster', function() {
 
     var watchForCollapse = function(element) {
         element.on('shown.bs.collapse hidden.bs.collapse' , function() {
+
+            var icon = element.find(".collapse-icon");
+
             layoutClusters();
+
+            if (icon.is(".glyphicon-chevron-up")) {
+                icon.removeClass("glyphicon-chevron-up");
+                icon.addClass("glyphicon-chevron-right");
+            } else {
+                icon.removeClass("glyphicon-chevron-right");
+                icon.addClass("glyphicon-chevron-up");
+            }
+
         });
+
     };
 
     return {

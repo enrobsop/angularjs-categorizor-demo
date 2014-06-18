@@ -8,14 +8,21 @@ categorizorModule.directive('categorySelector', function() {
             },
 
             handleNewCategorySelected = function() {
-                var collapsable = element.parents(".cluster").find(".panel-collapse"),
-                    selectedTerm = getSelectedTerm();
-                console.info("selectedTerm:", selectedTerm);
-                if (selectedTerm) {
+                var cluster     = element.parents(".cluster"),
+                    collapsable = cluster.find(".panel-collapse"),
+                    panel       = cluster.find(".panel");
+
+                if (getSelectedTerm()) {
                     collapsable.collapse("hide");
+                    panel.removeClass("panel-default panel-danger");
+                    panel.addClass("panel-success");
+
                 } else {
                     collapsable.collapse("show");
+                    panel.removeClass("panel-success");
+                    panel.addClass("panel-danger");
                 }
+
             };
 
         element.select2({
