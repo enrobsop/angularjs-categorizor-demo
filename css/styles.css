@@ -3,10 +3,19 @@
 }
 
 .select2-container {
-    padding: 0px;
-    border-width: 0px;
+    padding: 0;
+    border-width: 0;
 }
 
 .select2-container.form-control {
     height: auto !important;
+}
+
+.cluster .table {
+    display: table;
+    margin:  0;
+}
+
+.cluster .transaction-count {
+    border: 2px solid #FFF;
 }
