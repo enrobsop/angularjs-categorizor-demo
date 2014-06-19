@@ -1,18 +1,20 @@
-describe("The cluster directive", function() {
+describe("the ClusterController", function() {
 
-    var scope;
+    var scope,
+        controller;
 
-    beforeEach(module('Categorizor'));
+    beforeEach(function() {
 
-    beforeEach(inject(function($rootScope, $compile) {
-        compileDirective($rootScope, $compile);
-    }));
+        module('Categorizor');
 
-    function compileDirective($rootScope, $compile) {
-        var element = $compile("<div cluster></div>")($rootScope);
-        $rootScope.$digest();
-        scope = element.scope();
-    }
+        inject(function($rootScope, $controller) {
+            scope = $rootScope.$new();
+            controller = $controller('ClusterCtrl', {
+                $scope: scope
+            });
+        });
+
+    });
 
     // ******************** Tests ********************
 
