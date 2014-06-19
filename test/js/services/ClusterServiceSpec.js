@@ -7,6 +7,4 @@ describe("Service: clusterService", function() {
         clusterService = service;
     }));
 
-
-
 });
