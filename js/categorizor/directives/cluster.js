@@ -1,11 +1,14 @@
 categorizorModule.directive('cluster', function() {
 
     var linker = function(scope, element, attrs) {
+
         makeDraggable(element);
         makeDroppable(scope, element);
-        watchForFocus(scope, element);
-        watchForCollapse(element);
-        watchForCategorySelection(scope, element);
+
+        handleFocusEvents(scope, element);
+        handleCollapseEvents(element);
+        handleCategorySelection(scope, element);
+        
         angular.element(".category-selector:first").find("input").focus();
     };
 
@@ -197,7 +200,7 @@ categorizorModule.directive('cluster', function() {
         return prefixedId.replace('cluster-','');
     };
 
-    var watchForCollapse = function(element) {
+    var handleCollapseEvents = function(element) {
         element.on('shown.bs.collapse hidden.bs.collapse' , function() {
 
             var icon = element.find(".collapse-icon");
@@ -215,7 +218,7 @@ categorizorModule.directive('cluster', function() {
         });
     };
 
-    var watchForCategorySelection = function(scope, element) {
+    var handleCategorySelection = function(scope, element) {
         var collapsable,
             panel;
 
@@ -250,7 +253,7 @@ categorizorModule.directive('cluster', function() {
 
     };
 
-    var watchForFocus = function(scope, element) {
+    var handleFocusEvents = function(scope, element) {
         var focusClass = "panel-info";
 
         element.find("input").focusin(function () {
