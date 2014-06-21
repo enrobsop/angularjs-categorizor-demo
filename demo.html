@@ -81,7 +81,7 @@
                         <div class="col-sm-8">
                             <label>Categories:</label>
                             <ul ng-repeat="category in categories" class="list-group">
-                                <li class="list-group-item">{{category.text}} <span class="badge">99</span></li>
+                                <li class="list-group-item">{{category.text}} <span class="badge">{{category.transactions.length}}</span></li>
                             </ul>
                         </div>
 
@@ -167,6 +167,7 @@
 <script src="js/categorizor/clustering/SimilarityMatrix.js"></script>
 <script src="js/categorizor/domain/Cluster.js"></script>
 <script src="js/categorizor/domain/Transaction.js"></script>
+<script src="js/categorizor/domain/Category.js"></script>
 <script src="js/categorizor/app.js"></script>
 <script src="js/categorizor/controllers/mainController.js"></script>
 <script src="js/categorizor/controllers/clusterController.js"></script>

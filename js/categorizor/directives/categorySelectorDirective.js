@@ -60,7 +60,7 @@ categorizorModule.directive('categorySelector', function() {
         };
 
         $scope.newCategoryChoice = function(name) {
-            return {id: name, text: name}
+            return new Category({id: name, text: name});
         };
 
     };
