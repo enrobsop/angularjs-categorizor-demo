@@ -1,52 +1,50 @@
 categorizorModule.directive('chart', ['categorizorHelper', function(categorizorHelper) {
 
-//    var chart,
-//        options = {
-//            'title':    '',
-//            'width':    400,
-//            'height':   300
-//        },
-//        rows;
-
     var linker = function(scope, element, attrs) {
-
-        var chart           = new google.visualization.ColumnChart(element.get(0)),
-            options         = {
-                title:  attrs.chartTitle,
-                width:  350,
-                height: 200
-            };
-
-        makeChart(scope, chart, options);
-
         scope.$watchCollection(
             function () {
-                return scope.source().flatten();
+                return parseSourceData(scope.source()).flatten();
             },
             function () {
-                drawChart(scope, chart, options);
+                drawChart(scope, element);
             }
         );
+    };
+
+    var drawChart = function(scope, element) {
+        if (element.is(":visible")) {
+            $.plot(element,
+                [parseSourceData(scope.source())], {
+                series: {
+                    color:  "blue",
+                    lines:  {show: false},
+                    bars:   {
+                        show:       true,
+                        barWidth:   0.6,
+                        align:      "center"
+                    }
+                },
+                xaxis: {
+                    mode: "categories",
+                    tickLength: 0
+                },
+                yaxis: {
+                    tickDecimals: 0
+                },
+                grid: {
+                    borderWidth: 0
+                }
+            });
+        }
 
     };
 
-    var makeChart = function(scope, chart, options) {
-        google.setOnLoadCallback(function() {
-            drawChart(scope, chart, options);
-        });
-    };
-
-    var drawChart = function(scope, chart, options) {
-        var data = buildData(scope);
-        chart.draw(data, options);
-    };
-
-    var buildData = function(scope) {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Category');
-        data.addColumn('number', 'Net');
-        data.addRows(scope.source());
-        return data;
+    var parseSourceData = function(data) {
+        var desc = true;
+            sorted = data.sortBy(function(item) {
+                return Math.abs(item[1]);
+            }, desc);
+        return sorted.slice(0, 6);
     };
 
     return {

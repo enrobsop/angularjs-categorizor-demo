@@ -78,18 +78,13 @@
                             </div>
                         </div>
 
-
-                        <div class="col-sm-4">
-                            <div chart
-                                 id="incomeChart"
-                                 source="getCategoryIncomeData()"
-                                 chart-title="Income"></div>
-                        </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-8">
                             <div chart
                                  id="expensesChart"
-                                 source="getCategoryExpenseData()"
-                                 chart-title="Expenses"></div>
+                                 source="getCategoryBalanceData()"
+                                 chart-title="Category"
+                                 style="min-height:130px;"
+                             ></div>
                         </div>
 
                     </div>
@@ -170,6 +165,8 @@
 <script src="bower_components/sugar/release/sugar.min.js"></script>
 <script src="bower_components/select2/select2.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/flot/jquery.flot.js"></script>
+<script src="bower_components/flot/jquery.flot.categories.js"></script>
 
 <script src="js/otherModules/unique.js"></script>
 <script src="js/categorizor/clustering/SimilarityService.js"></script>

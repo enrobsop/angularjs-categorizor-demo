@@ -30,6 +30,13 @@ categorizorModule.controller('MainCtrl', function($scope, categorizorHelper, cat
         });
     };
 
+    $scope.getCategoryBalanceData = function() {
+        return $scope.categories.map(function(item) {
+            var net = item.calculateNet();
+            return [item.text, item.calculateNet()];
+        });
+    };
+
     var updateCategoryTransactions = function(clusters) {
         clusters.each(function(cluster) {
 
