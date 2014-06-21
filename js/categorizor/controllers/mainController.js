@@ -14,22 +14,6 @@ categorizorModule.controller('MainCtrl', function($scope, categorizorHelper, cat
         });
     };
 
-    $scope.getCategoryExpenseData = function() {
-        return $scope.categories.map(function(item) {
-            var net = item.calculateNet();
-            return (net < 0) ?
-                [item.text, Math.abs(item.calculateNet())] : null;
-        });
-    };
-
-    $scope.getCategoryIncomeData = function() {
-        return $scope.categories.map(function(item) {
-            var net = item.calculateNet();
-            return (net > 0) ?
-                [item.text, Math.abs(item.calculateNet())] : null;
-        });
-    };
-
     $scope.getCategoryBalanceData = function() {
         return $scope.categories.map(function(item) {
             var net = item.calculateNet();
