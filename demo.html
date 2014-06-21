@@ -54,14 +54,39 @@
             <div  class="panel panel-default">
                 <div class="panel-body">
 
-                    <div class="col-sm-4">
-                        <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
-                        <div cluster-strength
-                             id="clusterStrength"
-                             data-toggle="tooltip"
-                             title="Drag to change the number of clusters"
-                             data-placement="top">
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
+                                    <div cluster-strength
+                                         id="clusterStrength"
+                                         data-toggle="tooltip"
+                                         title="Drag to change the number of clusters"
+                                         data-placement="top">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>Transactions categorized:</label>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{categorizedTransactionsCount}}" aria-valuemin="0" aria-valuemax="{{rawTransactions.length}}" style="width: {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%;">
+                                            {{categorizedTransactionsCount}} / {{rawTransactions.length}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-sm-8">
+                            <div chart
+                                 id="expensesChart"
+                                 source="getCategoryBalanceData()"
+                                 chart-title="Category"
+                                 style="min-height:130px;"
+                             ></div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -75,6 +100,7 @@
                  class="masonry-brick cluster col-sm-4"
                  ng-model="clusters"
                  ng-repeat="cluster in clusters"
+                 ng-cloak
             >
                 <div class="panel panel-default">
                     <header class="panel-heading handle">
@@ -101,7 +127,7 @@
                                 data-transaction-id="{{$index}}"
                                 data-cluster-id="{{cluster.id}}"
                                 ng-repeat="transaction in cluster.items track by $index"
-                                    >
+                             >
                                 <td>{{transaction.date}}</td>
                                 <td>{{transaction.label}}</td>
                                 <td class="rightCell">{{transaction.amount | number:2}}</td>
@@ -119,6 +145,8 @@
     <footer></footer>
 </div>
 
+<script src="https://www.google.com/jsapi"></script>
+<script>google.load('visualization', '1.0', {'packages':['corechart']});</script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -137,11 +165,15 @@
 <script src="bower_components/sugar/release/sugar.min.js"></script>
 <script src="bower_components/select2/select2.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/flot/jquery.flot.js"></script>
+<script src="bower_components/flot/jquery.flot.categories.js"></script>
 
 <script src="js/otherModules/unique.js"></script>
 <script src="js/categorizor/clustering/SimilarityService.js"></script>
 <script src="js/categorizor/clustering/SimilarityMatrix.js"></script>
 <script src="js/categorizor/domain/Cluster.js"></script>
+<script src="js/categorizor/domain/Transaction.js"></script>
+<script src="js/categorizor/domain/Category.js"></script>
 <script src="js/categorizor/app.js"></script>
 <script src="js/categorizor/controllers/mainController.js"></script>
 <script src="js/categorizor/controllers/clusterController.js"></script>
@@ -152,6 +184,7 @@
 <script src="js/categorizor/directives/transactionDirective.js"></script>
 <script src="js/categorizor/directives/categorySelectorDirective.js"></script>
 <script src="js/categorizor/directives/clusterStrengthDirective.js"></script>
+<script src="js/categorizor/directives/chartDirective.js"></script>
 
 </body>
 </html>

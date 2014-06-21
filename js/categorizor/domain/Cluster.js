@@ -1,4 +1,5 @@
 Cluster = function Cluster(config) {
+    config = config || {};
     this.id         = config.id;
     this.items      = new Array();
     this.category   = config.category;
@@ -69,4 +70,4 @@ Cluster.prototype = {
         }
     }
 
-}
+};
