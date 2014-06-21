@@ -54,14 +54,37 @@
             <div  class="panel panel-default">
                 <div class="panel-body">
 
-                    <div class="col-sm-4">
-                        <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
-                        <div cluster-strength
-                             id="clusterStrength"
-                             data-toggle="tooltip"
-                             title="Drag to change the number of clusters"
-                             data-placement="top">
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
+                                    <div cluster-strength
+                                         id="clusterStrength"
+                                         data-toggle="tooltip"
+                                         title="Drag to change the number of clusters"
+                                         data-placement="top">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>Transactions categorized:</label>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{categorizedTransactionsCount}}" aria-valuemin="0" aria-valuemax="{{rawTransactions.length}}" style="width: {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%;">
+                                            {{categorizedTransactionsCount}} / {{rawTransactions.length}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-sm-8">
+                            <label>Categories:</label>
+                            <ul ng-repeat="category in categories" class="list-group">
+                                <li class="list-group-item">{{category.text}} <span class="badge">99</span></li>
+                            </ul>
+                        </div>
+
                     </div>
 
                 </div>
@@ -102,7 +125,7 @@
                                 data-transaction-id="{{$index}}"
                                 data-cluster-id="{{cluster.id}}"
                                 ng-repeat="transaction in cluster.items track by $index"
-                                    >
+                             >
                                 <td>{{transaction.date}}</td>
                                 <td>{{transaction.label}}</td>
                                 <td class="rightCell">{{transaction.amount | number:2}}</td>

@@ -106,12 +106,12 @@ categorizorModule.directive('cluster', function() {
         var collapsable,
             panel;
 
-        element.on('categorySelected', function(event, cluster, term) {
+        element.on('categorySelected', function(event, clusterElement, term) {
 
             scope.cluster.setCategory(term);
 
-            collapsable = cluster.find(".panel-collapse");
-            panel       = cluster.find(".panel");
+            collapsable = clusterElement.find(".panel-collapse");
+            panel       = clusterElement.find(".panel");
 
             collapsable.collapse("hide");
             panel.removeClass("panel-default panel-danger");
@@ -125,6 +125,7 @@ categorizorModule.directive('cluster', function() {
         }).on('categoryDeselected', function(event, cluster) {
 
             scope.cluster.unsetCategory();
+            scope.$apply();
 
             collapsable = cluster.find(".panel-collapse");
             panel       = cluster.find(".panel");

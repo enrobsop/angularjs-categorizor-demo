@@ -4,14 +4,14 @@ describe("The Categorizor App", function() {
         clusterService;
 
     beforeEach(module('Categorizor'));
-    beforeEach(inject(function($controller) {
-        scope = {};
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope;
         clusterService = {
             findClustersIn: function(config) { }
         };
         $controller('MainCtrl', {
-            $scope:         scope,
-            clusterService: clusterService
+            $scope:             scope,
+            clusterService:     clusterService
         });
     }));
 
