@@ -78,11 +78,18 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-8">
-                            <label>Categories:</label>
-                            <ul ng-repeat="category in categories" class="list-group">
-                                <li class="list-group-item">{{category.text}} <span class="badge">{{category._transactions.length}} {{category.net | number:2}}</span></li>
-                            </ul>
+
+                        <div class="col-sm-4">
+                            <div chart
+                                 id="incomeChart"
+                                 source="getCategoryIncomeData()"
+                                 chart-title="Income"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div chart
+                                 id="expensesChart"
+                                 source="getCategoryExpenseData()"
+                                 chart-title="Expenses"></div>
                         </div>
 
                     </div>
@@ -143,6 +150,8 @@
     <footer></footer>
 </div>
 
+<script src="https://www.google.com/jsapi"></script>
+<script>google.load('visualization', '1.0', {'packages':['corechart']});</script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -178,6 +187,7 @@
 <script src="js/categorizor/directives/transactionDirective.js"></script>
 <script src="js/categorizor/directives/categorySelectorDirective.js"></script>
 <script src="js/categorizor/directives/clusterStrengthDirective.js"></script>
+<script src="js/categorizor/directives/chartDirective.js"></script>
 
 </body>
 </html>
