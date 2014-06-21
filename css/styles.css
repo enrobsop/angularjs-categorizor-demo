@@ -25,3 +25,7 @@
     display: table;
     margin:  0;
 }
+
+.dropHover {
+    background: rgba(0, 255, 0, 0.1);
+}

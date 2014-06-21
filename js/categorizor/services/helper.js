@@ -20,6 +20,22 @@ categorizorModule.factory('categorizorHelper', function() {
                 return [cluster.category, cluster.size()].join(":");
             });
             return categoriesAndSizes.join();
+        },
+
+        layoutMasonry: function() {
+            $('#clusterContainer').masonry({
+                itemSelector: '.cluster',
+                columnWidth: 10,
+                gutterWidth: 10
+            });
+        },
+
+        getFromClusterId: function(ui) {
+            return ui.draggable.data("clusterId");
+        },
+
+        getTransactionId: function(ui) {
+            return ui.draggable.data("transactionId");
         }
 
     };
