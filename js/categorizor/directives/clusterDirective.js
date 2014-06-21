@@ -1,4 +1,4 @@
-categorizorModule.directive('cluster', function() {
+categorizorModule.directive('cluster', ["categorizorHelper", function(categorizorHelper) {
 
     var linker = function(scope, element, attrs) {
 
@@ -36,13 +36,13 @@ categorizorModule.directive('cluster', function() {
             drop: function(event, ui) {
                 var draggableId = getDraggableId(ui),
                     toClusterId = scope.cluster.id,
-                    fromClusterId = getFromClusterId(ui);
+                    fromClusterId = categorizorHelper.getFromClusterId(ui);
 
                 if (draggableId.startsWith('cluster-')) {
                     fromClusterId = getClusterId(draggableId);
                     scope.moveAllTransactions(fromClusterId, toClusterId);
                 } else {
-                    var transactionId = getTransactionId(ui);
+                    var transactionId = categorizorHelper.getTransactionId(ui);
                     scope.moveTransaction(transactionId, fromClusterId, toClusterId);
                 }
 
@@ -57,27 +57,11 @@ categorizorModule.directive('cluster', function() {
         return ui.draggable.attr('id') || 'unknownTransactionId';
     };
 
-    var getTransactionId = function(ui) {
-        return ui.draggable.data("transactionId");
-    };
-
-    var getFromClusterId = function(ui) {
-        return ui.draggable.data("clusterId");
-    };
-
-    var layoutMasonry = function() {
-        $('#clusterContainer').masonry({
-            itemSelector: '.cluster',
-            columnWidth: 10,
-            gutterWidth: 10
-        });
-    };
-
     var layoutClusters = function(scope) {
         if (scope) {
             scope.$apply();
         }
-        layoutMasonry();
+        categorizorHelper.layoutMasonry();
     }
 
     var getClusterId = function(prefixedId) {
@@ -155,4 +139,4 @@ categorizorModule.directive('cluster', function() {
       controller:   'ClusterCtrl'
     };
 
-});
+}]);

@@ -48,30 +48,34 @@
     <header>
         <h1>Clustering &amp; Categorization</h1>
     </header>
-    <section ng-controller="MainCtrl" id="mainContent" class="container">
+    <section ng-controller="MainCtrl" id="mainContent" class="container" ng-cloak>
 
         <section id="controls" class="row">
-            <div  class="panel panel-default">
-                <div class="panel-body">
+            <div  class="well well-lg">
 
                     <div class="row">
 
                         <div class="col-sm-4">
-                            <div class="row">
+
+                            <div class="row" style="margin-bottom: 20px;">
                                 <div class="col-sm-12">
                                     <label for="clusterStrength">Clusters: <span class="badge" data-toggle="tooltip" title="Number of clusters">{{clusters.length}}</span></label>
                                     <div cluster-strength
                                          id="clusterStrength"
                                          data-toggle="tooltip"
                                          title="Drag to change the number of clusters"
-                                         data-placement="top">
+                                         data-placement="top"
+                                         >
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-sm-12">
-                                    <label>Transactions categorized:</label>
+                                    <label>Transactions categorized: <span class="badge">{{categorizedTransactionsCount}} / {{rawTransactions.length}}</span></label>
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{categorizedTransactionsCount}}" aria-valuemin="0" aria-valuemax="{{rawTransactions.length}}" style="width: {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%;">
-                                            {{categorizedTransactionsCount}} / {{rawTransactions.length}}
+                                            {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%
                                         </div>
                                     </div>
                                 </div>
@@ -89,11 +93,15 @@
 
                     </div>
 
-                </div>
             </div>
         </section>
 
-        <div id="clusterContainer" class="row" masonry-options="{ transitionDuration: '0' }" masonry>
+        <div clusters
+             id="clusterContainer"
+             class="row"
+             masonry-options="{ transitionDuration: '0' }"
+             masonry
+        >
 
             <div cluster id="cluster-{{cluster.id}}"
                  data-cluster-id="{{cluster.id}}"
@@ -180,7 +188,9 @@
 <script src="js/categorizor/services/helper.js"></script>
 <script src="js/categorizor/services/model.js"></script>
 <script src="js/categorizor/services/clusterService.js"></script>
+<script src="js/categorizor/services/clusterService.js"></script>
 <script src="js/categorizor/directives/clusterDirective.js"></script>
+<script src="js/categorizor/directives/clustersDirective.js"></script>
 <script src="js/categorizor/directives/transactionDirective.js"></script>
 <script src="js/categorizor/directives/categorySelectorDirective.js"></script>
 <script src="js/categorizor/directives/clusterStrengthDirective.js"></script>
