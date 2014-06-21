@@ -4,7 +4,8 @@ Transaction = function Transaction(config) {
     this.date       = config.date;
     this.label      = config.label;
     this.category   = config.category;
-}
+    this.amount     = config.amount;
+};
 
 Transaction.prototype = {
 
