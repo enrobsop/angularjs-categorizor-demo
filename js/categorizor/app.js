@@ -13,7 +13,7 @@ categorizorModule.config(['$routeProvider',
             }).
             when('/clusters', {
                 templateUrl: '_clusters.html',
-                controller: 'MainCtrl'
+                controller: 'clustersCtrl'
             }).
             otherwise({
                 redirectTo: '/statement'

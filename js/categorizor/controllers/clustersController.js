@@ -1,4 +1,4 @@
-categorizorModule.controller('MainCtrl', function($scope, categorizorHelper, categorizorModel, clusterService) {
+categorizorModule.controller('clustersCtrl', function($scope, categorizorHelper, categorizorModel, clusterService) {
 
     $scope.rawTransactions  = categorizorModel.getTransactions();
     $scope.clusterStrength  = 0.2;
