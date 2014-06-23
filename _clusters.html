@@ -1,3 +1,5 @@
+<button class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#instructions"> Show instructions</button>
+<h2>Clusters View: <small>Categorise the transactions</small></h2>
 <section ng-controller="clustersCtrl" id="mainContent" class="container" ng-cloak>
 
     <section id="controls" class="row">
@@ -22,7 +24,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <label>Transactions categorized: <span class="badge">{{categorizedTransactionsCount}} / {{rawTransactions.length}}</span></label>
+                            <label>Progress: <small>transactions categorized</small> <span class="badge">{{categorizedTransactionsCount}} / {{rawTransactions.length}}</span></label>
                             <div class="progress progress-striped active">
                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{categorizedTransactionsCount}}" aria-valuemin="0" aria-valuemax="{{rawTransactions.length}}" style="width: {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%;">
                                     {{100 * categorizedTransactionsCount / rawTransactions.length | number : 0}}%
@@ -99,4 +101,43 @@
 
     </div>
 
+</section>
+
+<section id="instructions" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Instructions</h4>
+            </header>
+            <div class="modal-body">
+                <p>
+                    <strong>Goal: categorise the transactions.</strong>
+                </p>
+                <h4>Clustering</h4>
+                <p>
+                    Change the clustering strength by dragging the <em>Clusters</em> slider.
+                    Use the tab key to move between clusters.
+                    Each cluster can be rolled-up/down by clicking on the badge on the top-right of the cluster.
+                    The number in the badge is a count of the number of transactions in a cluster.
+                </p>
+                <h4>Categorisation</h4>
+                <p>
+                    <strong>Drag-n-drop</strong> transactions between clusters. Dragging a transaction will create a new cluster at the bottom of the page.
+                    Clusters can be merged by dragging them onto one another.
+                </p>
+                <p>
+                    New categories are created by typing into the <em>Category name</em> select box.
+                    The category box uses auto-complete for existing categories.
+                    Use <em>tab</em> to move to the next cluster after selecting a category.
+                </p>
+                <p>
+                    Clusters with categories are automatically rolled-up to allow uncategorised clusters to rise to the top.
+                </p>
+            </div>
+            <footer class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Dismiss</button>
+            </footer>
+        </div>
+    </div>
 </section>
