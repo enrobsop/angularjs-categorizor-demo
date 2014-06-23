@@ -1,0 +1,16 @@
+<div class="well well-sm">
+    <p>A single-page Angular JS application that provides utilities for categorising the transactions in a bank statement.</p>
+    <p>The application demonstrates a basic clustering algorithm and integration with several third-party libraries including jQuery UI, Select2, Flot Charts, Bootstrap and Masonry.</p>
+</div>
+<a href="#clusters" class="btn btn-primary pull-right">Next: Cluster &amp; categorize these transactions &raquo;</a>
+<h2>Statement View</h2>
+<table class="table table-striped table-hover">
+    <tbody>
+    <tr ng-repeat="transaction in rawTransactions">
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.label}}</td>
+        <td class="rightCell">{{transaction.amount | number:2}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="well well-sm text-right"><a href="#clusters" class="btn btn-primary">Next: Cluster &amp; categorize these transactions &raquo;</a> </div>
