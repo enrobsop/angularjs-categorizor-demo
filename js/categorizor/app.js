@@ -8,11 +8,11 @@ categorizorModule.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/statement', {
-                templateUrl: './_statement.html',
+                templateUrl: './partials/statement.html',
                 controller: 'statementCtrl'
             }).
             when('/clusters', {
-                templateUrl: './_clusters.html',
+                templateUrl: './partials/clusters.html',
                 controller: 'clustersCtrl'
             }).
             otherwise({
