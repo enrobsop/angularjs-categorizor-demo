@@ -1,8 +1,12 @@
 # AngularJS Demonstration App
 
-AngularJS application providing an example of integraton of JavaScript libraries (jQueryUI, Masonry, Select2, Flot and Bootstrap) and custom functionality: 
+Single-page AngularJS application providing an example of:
+  - integraton of multiple JavaScript libraries (jQueryUI, Masonry, Select2, Flot and Bootstrap) 
+  - simple, custom clustering functionality
 
-*View [documentation and live demo](http://enrobsop.github.io/angularjs-categorizor-demo)...*
+*Jump to:* 
+  - [Documentation (GitHub Pages)](http://enrobsop.github.io/angularjs-categorizor-demo)
+  - **[Live Demo](http://enrobsop.github.io/angularjs-categorizor-demo/demo.html)**
 
 ### Screenshot
 ![Screenshot](images/screenshot1.png)
